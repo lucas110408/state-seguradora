@@ -1,0 +1,23 @@
+@startuml
+skinparam monochrome true
+skinparam style strictuml
+skinparam classBackgroundColor White
+skinparam backgroundColor White
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+hide empty description
+
+state "Em Análise" as EmAnalise
+
+[*] --> EmAnalise
+EmAnalise --> Ativa : aprovar
+EmAnalise --> Recusada : recusar
+Ativa --> Suspensa : suspender
+Suspensa --> Ativa : reativar
+Ativa --> Cancelada : cancelar
+Suspensa --> Cancelada : cancelar
+Ativa --> Encerrada : encerrar
+Recusada --> [*]
+Cancelada --> [*]
+Encerrada --> [*]
+@enduml

@@ -1,0 +1,57 @@
+@startuml
+skinparam monochrome true
+skinparam style strictuml
+skinparam classBackgroundColor White
+skinparam backgroundColor White
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+
+class Apolice {
+  - numero : String
+  - estado : ApoliceEstado
+  + aprovar() : boolean
+  + recusar() : boolean
+  + suspender() : boolean
+  + reativar() : boolean
+  + cancelar() : boolean
+  + encerrar() : boolean
+  + setEstado(estado : ApoliceEstado)
+}
+
+abstract class ApoliceEstado {
+  + getEstado() : String
+  + aprovar(apolice : Apolice) : boolean
+  + recusar(apolice : Apolice) : boolean
+  + suspender(apolice : Apolice) : boolean
+  + reativar(apolice : Apolice) : boolean
+  + cancelar(apolice : Apolice) : boolean
+  + encerrar(apolice : Apolice) : boolean
+}
+
+class ApoliceEstadoEmAnalise {
+}
+
+class ApoliceEstadoAtiva {
+}
+
+class ApoliceEstadoSuspensa {
+}
+
+class ApoliceEstadoRecusada {
+}
+
+class ApoliceEstadoCancelada {
+}
+
+class ApoliceEstadoEncerrada {
+}
+
+Apolice --> "1" ApoliceEstado : estado
+
+ApoliceEstado <|-- ApoliceEstadoEmAnalise
+ApoliceEstado <|-- ApoliceEstadoAtiva
+ApoliceEstado <|-- ApoliceEstadoSuspensa
+ApoliceEstado <|-- ApoliceEstadoRecusada
+ApoliceEstado <|-- ApoliceEstadoCancelada
+ApoliceEstado <|-- ApoliceEstadoEncerrada
+@enduml
